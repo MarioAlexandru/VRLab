@@ -17,5 +17,13 @@ public class Element : MonoBehaviour
     public string FlameColour { get => flameColour; }
 
     public GameObject ParticlePrefab { get => particlePrefab; }
-    
+    public Material Material1;
+    //in the editor this is what you would set as the object you wan't to change
+    public GameObject Object;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Object.GetComponent<MeshRenderer>().material = Material1;
+    }
+
 }

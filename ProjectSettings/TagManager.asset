@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Element
   - Flame
+  - Cup
+  - Water
+  - Copper
   layers:
   - Default
   - TransparentFX
