@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 namespace UnitySimpleLiquid
 {
@@ -12,14 +15,21 @@ namespace UnitySimpleLiquid
         //[SerializeField] Color color;
         public MeshRenderer liquidRenderer;
         public GameObject obiectShake;
-        bool ok = false;
-       
+        public GameObject water;
+        //bool ok = false;
+        Temperature temp;
+        public ParticleSystem aburi;
+
+
         public Material Dizzolve;
         public Material Liquid;
+        Material dizzolveCopy;
+        Material liquidCopy;
         public LiquidContainer liquidContainer;
         public Animator liquidAnimator;
-        bool hasWater;
-        float dizzolvePercent;
+        //bool hasWater;
+        //bool isDizzolved;
+        float dizzolvePercent = 0;
         bool isInCollision;
         
         public Color startColor;
@@ -28,30 +38,38 @@ namespace UnitySimpleLiquid
         //public Renderer renderer;
         private float startTime;
         private bool i = false;
+        private GameObject cube;
+        MaterialPropertyBlock colorChange;
 
-
+        private void Awake()
+        {
+            dizzolveCopy = new Material(Dizzolve);
+            liquidCopy = new Material(Liquid);
+            colorChange = new MaterialPropertyBlock();
+        }
         private void Start()
         {
-            Liquid.SetColor("Color", startColor);
-            dizzolvePercent = 0;
-            if (liquidContainer.fillAmountPercent > 0f)
-            {
-                Debug.Log("true");
-                hasWater = true;
-            }
-            Dizzolve.SetFloat("_dizzolvePercent", dizzolvePercent);
-            //Dizzolve.SetColor("_baseColor", startColor);
-
+            temp = GetComponent<Temperature>();
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-
-            Debug.Log("dhia");
-
+            cube = collision.gameObject;
+            if(cube.tag == "Copper")
+            {
+                cube.GetComponent<Renderer>().material = dizzolveCopy;
+                cube.transform.SetParent(this.transform);
+            }
             isInCollision = true;
         }
 
+        private void OnCollisionExit(Collision collision)
+        {
+            if(collision.gameObject == cube)
+            {
+                cube.transform.parent = null;
+            }
+        }
 
         void Fade()
         {
@@ -59,56 +77,71 @@ namespace UnitySimpleLiquid
 
             if (dizzolvePercent < 1)
             {
-                dizzolvePercent = dizzolvePercent + 1f * Time.deltaTime;
-                Dizzolve.SetFloat("_dizzolvePercent", dizzolvePercent);
+                dizzolvePercent = dizzolvePercent + 1.7f * Time.deltaTime;
+                dizzolveCopy.SetFloat("_dizzolvePercent", dizzolvePercent);
             }
 
         }
         void Update()
         {
-            if(liquidContainer.fillAmountPercent>0 && isInCollision)
+            if (liquidContainer.fillAmountPercent>0 && isInCollision)
             {
-                Debug.Log("Start Shake1233123");
-
                 if ((obiectShake.transform.rotation.eulerAngles.z < 70 && obiectShake.transform.rotation.eulerAngles.z > 30) ||
-             (obiectShake.transform.rotation.eulerAngles.x > -70 && obiectShake.transform.rotation.eulerAngles.x < -30))
+             (obiectShake.transform.rotation.eulerAngles.x < 70 && obiectShake.transform.rotation.eulerAngles.x > 30))
                 
-                    {
+                 {
                     Fade();
-                    
                     Debug.Log("Start Shake");
                     startTime = Time.time;
                     i = true;
                 }
                 
                 if (i )
-                {
-
-                    float curTime = Time.time - startTime;
-
-                   if (curTime <= changeDuration)
+                {   
+                   if (dizzolvePercent<1f)
                     {
-                        Debug.Log("iudhbfuiu");
-
-                        liquidAnimator.Play("New Animation");
-                        //liquidRenderer.material.SetColor("_Color", Color.Lerp(startColor,targetColor, curTime/changeDuration));
+                        colorChange.SetColor("_Color", Color.Lerp(startColor, targetColor, dizzolvePercent));
+                        water.GetComponent<Renderer>().SetPropertyBlock(colorChange, 0);
                     }
-                   else
-                   {
-                        
-                       // Change the color to the target color when the duration is exceeded
-                       liquidRenderer.material.SetColor("_Color",  targetColor);
-                       i = false;
-                   }
                 }
             }
-            
+
+            if (dizzolvePercent >=1 && temp.temperature >= 30f)
+            {
+                liquidContainer.FillAmountPercent -= 0.025f * Time.deltaTime;
+                if(!aburi.isPlaying)
+                {
+                    aburi.Play();    
+                }
+            }
+            if(liquidContainer.fillAmountPercent == 0 && aburi.isPlaying)
+            {
+                aburi.Stop();
+
+                if (cube != null)
+
+                {
+                    Instantiate(cube);
+                }
+                dizzolvePercent = 0f;
+                dizzolveCopy.SetFloat("_dizzolvePercent", dizzolvePercent);
+            }
+            if(liquidContainer.fillAmountPercent == 0)
+            {
+                if(dizzolvePercent >= 1)
+                {
+                    if(cube != null)
+                    {
+                        Destroy(cube);
+                    }
+                }
+
+               colorChange.SetColor("_Color", startColor);
+               water.GetComponent<Renderer>().SetPropertyBlock(colorChange, 0);
+               i = false;
+            }
         }
 
 
     }
 }
-//Material myMaterial;
-//float someValue;
-
-//myMaterial.SetFloat("MyPropertyName", someValue);

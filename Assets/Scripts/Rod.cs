@@ -29,7 +29,7 @@ public class Rod : MonoBehaviour
                 }
                 GameObject flame = Instantiate(selectedElement.ParticlePrefab, flameSpawn);
                 flame.transform.localPosition = Vector3.zero;
-                flame.transform.localRotation = Quaternion.Euler(0f,0f,0f);
+                flame.transform.localRotation = Quaternion.Euler(0f,90f,0f);
 
                 selectedElement = null;
             }

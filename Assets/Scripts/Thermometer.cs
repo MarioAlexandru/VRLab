@@ -22,7 +22,6 @@ public class Thermometer : MonoBehaviour
     {
         
         temperature = cup.GetComponent<Temperature>().temperature;
-        Debug.Log(temperature);
         text.text = temperature.ToString()+ "C°";
 
     }

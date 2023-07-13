@@ -35,7 +35,6 @@ public class Temperature : MonoBehaviour
         {
             if (other.tag == "Flame")
             {
-                Debug.Log(temperature);
                 temperature += 5f*Time.deltaTime;
             }
         }

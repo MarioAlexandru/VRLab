@@ -18,7 +18,7 @@ namespace UnityEngine.XR.Content.Interaction
             value = GetComponent<XRKnob>().value;
             if (value ==0f)
             {
-                Debug.Log(value);
+                
                 particles.Stop();
             }
             else if(value==1f)
