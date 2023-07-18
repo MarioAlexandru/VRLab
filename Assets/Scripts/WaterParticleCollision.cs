@@ -7,8 +7,7 @@ namespace UnitySimpleLiquid
 {
     public class WaterParticleCollision : MonoBehaviour
     {
-        public ParticleSystem waterStream;
-        private bool ok;
+        
         public LiquidContainer liquidContainer;
 
 
@@ -20,7 +19,7 @@ namespace UnitySimpleLiquid
                 if (liquidContainer.fillAmountPercent <= 1f)
                 {
                     Debug.Log("Entered3");
-                    liquidContainer.FillAmountPercent += 0.025f;
+                    liquidContainer.FillAmountPercent += 0.25f*Time.deltaTime;
                 }
             }
             

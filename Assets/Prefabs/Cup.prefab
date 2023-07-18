@@ -332,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e88c843698a4c42923d1fef955f8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterStream: {fileID: 0}
   liquidContainer: {fileID: 0}
 --- !u!114 &7180060832429629656
 MonoBehaviour:

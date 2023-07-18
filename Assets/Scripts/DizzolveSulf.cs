@@ -8,7 +8,7 @@ using UnityEngine.ProBuilder.Shapes;
 namespace UnitySimpleLiquid
 {
 
-    public class DizzolveCopper : MonoBehaviour
+    public class DizzolveSulf : MonoBehaviour
     {
 
         //[SerializeField] [Range(0f, 1f)] float lerpTime;
@@ -18,7 +18,9 @@ namespace UnitySimpleLiquid
         public GameObject water;
         //bool ok = false;
         Temperature temp;
-        public ParticleSystem aburi;
+        //public ParticleSystem aburi;
+        //public GameObject crystal;
+        //public GameObject position;
 
 
         public Material Dizzolve;
@@ -26,20 +28,21 @@ namespace UnitySimpleLiquid
         Material dizzolveCopy;
         Material liquidCopy;
         public LiquidContainer liquidContainer;
-        public Animator liquidAnimator;
+        //public Animator liquidAnimator;
         //bool hasWater;
         //bool isDizzolved;
         float dizzolvePercent = 0;
         bool isInCollision;
-        
+
         public Color startColor;
         public Color targetColor;
         public float changeDuration = 0.6f;
         //public Renderer renderer;
         private float startTime;
-        private bool i = false;
+        //private bool i = false;
         private GameObject cube;
         MaterialPropertyBlock colorChange;
+        private bool i=false;
 
         private void Awake()
         {
@@ -54,18 +57,20 @@ namespace UnitySimpleLiquid
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.tag == "Copper")
+            if (collision.gameObject.tag == "Copper")
             {
                 cube = collision.gameObject;
                 cube.GetComponent<Renderer>().material = dizzolveCopy;
                 cube.transform.SetParent(this.transform);
+                
             }
             isInCollision = true;
+
         }
 
         private void OnCollisionExit(Collision collision)
         {
-            if(collision.gameObject == cube)
+            if (collision.gameObject == cube)
             {
                 cube.transform.parent = null;
             }
@@ -84,21 +89,24 @@ namespace UnitySimpleLiquid
         }
         void Update()
         {
-            if (liquidContainer.fillAmountPercent>0 && isInCollision)
+            // de schimbat aici temperatura
+
+            if (liquidContainer.fillAmountPercent > 0 && isInCollision && dizzolvePercent<1 && temp.temperature>=16f)
             {
+
                 if ((obiectShake.transform.rotation.eulerAngles.z < 70 && obiectShake.transform.rotation.eulerAngles.z > 30) ||
              (obiectShake.transform.rotation.eulerAngles.x < 70 && obiectShake.transform.rotation.eulerAngles.x > 30))
-                
-                 {
+
+                {
                     Fade();
                     Debug.Log("Start Shake");
                     startTime = Time.time;
                     i = true;
                 }
-                
-                if (i )
-                {   
-                   if (dizzolvePercent<1f)
+
+                if (i)
+                {
+                    if (dizzolvePercent < 1f)
                     {
                         colorChange.SetColor("_Color", Color.Lerp(startColor, targetColor, dizzolvePercent));
                         water.GetComponent<Renderer>().SetPropertyBlock(colorChange, 0);
@@ -106,40 +114,22 @@ namespace UnitySimpleLiquid
                 }
             }
 
-            if (dizzolvePercent >=1 && temp.temperature >= 30f)
+            if (dizzolvePercent >= 0.90)
             {
-                liquidContainer.FillAmountPercent -= 0.025f * Time.deltaTime;
-                if(!aburi.isPlaying)
+                
+                
+                if (cube)
                 {
-                    aburi.Play();    
+                    Destroy(cube);
                 }
+                
             }
-            if(liquidContainer.fillAmountPercent == 0 && aburi.isPlaying)
-            {
-                aburi.Stop();
 
-                if (cube != null)
-
-                {
-                    Instantiate(cube);
-                }
-                dizzolvePercent = 0f;
-                dizzolveCopy.SetFloat("_dizzolvePercent", dizzolvePercent);
-            }
-            if(liquidContainer.fillAmountPercent == 0)
-            {
-                if(dizzolvePercent >= 1)
-                {
-                    if(cube != null)
-                    {
-                        Destroy(cube);
-                    }
-                }
-
-               colorChange.SetColor("_Color", startColor);
-               water.GetComponent<Renderer>().SetPropertyBlock(colorChange, 0);
-               i = false;
-            }
+            
+        }
+        IEnumerator wait()
+        {
+            yield return new WaitForSeconds(5f*Time.deltaTime);
         }
 
 
