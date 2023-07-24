@@ -40,8 +40,8 @@ Material:
     - _QueueOffset: 0
     - _dizzolvePercent: 0
     m_Colors:
-    - _Color: {r: 1, g: 0, b: 0, a: 0}
-    - _baseColor: {r: 0.78039217, g: 0.34666136, b: 0.1607843, a: 0}
+    - _Color: {r: 0, g: 0.78581095, b: 1, a: 0}
+    - _baseColor: {r: 0.1607843, g: 0.33121613, b: 0.78039217, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &912741359623800304
 MonoBehaviour:

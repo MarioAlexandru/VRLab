@@ -54,13 +54,16 @@ namespace UnitySimpleLiquid
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.tag == "Copper")
+            if (collision.gameObject.tag == "Copper")
             {
                 cube = collision.gameObject;
                 cube.GetComponent<Renderer>().material = dizzolveCopy;
                 cube.transform.SetParent(this.transform);
+                isInCollision = true;
             }
-            isInCollision = true;
+            else
+                isInCollision = false;
+            
         }
 
         private void OnCollisionExit(Collision collision)
@@ -77,7 +80,7 @@ namespace UnitySimpleLiquid
 
             if (dizzolvePercent < 1)
             {
-                dizzolvePercent = dizzolvePercent + 1.7f * Time.deltaTime;
+                dizzolvePercent = dizzolvePercent + 1f * Time.deltaTime;
                 dizzolveCopy.SetFloat("_dizzolvePercent", dizzolvePercent);
             }
 
@@ -118,7 +121,7 @@ namespace UnitySimpleLiquid
             {
                 aburi.Stop();
 
-                if (cube != null)
+                if (cube == null)
 
                 {
                     Instantiate(cube);

@@ -19,7 +19,7 @@ namespace UnitySimpleLiquid
                 if (liquidContainer.fillAmountPercent <= 1f)
                 {
                     Debug.Log("Entered3");
-                    liquidContainer.FillAmountPercent += 0.25f*Time.deltaTime;
+                    liquidContainer.FillAmountPercent += 0.15f*Time.deltaTime;
                 }
             }
             

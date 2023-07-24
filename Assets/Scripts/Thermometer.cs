@@ -20,9 +20,15 @@ public class Thermometer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        string temperatureString = "16";
         temperature = cup.GetComponent<Temperature>().temperature;
-        text.text = temperature.ToString()+ "C°";
+        if (temperature > 16)
+        {
+            string[] split = temperature.ToString().Split(new char[] { '.' });
+            string decimals = split[1].ToString().Substring(0,1);
+            temperatureString = split[0] + '.' + decimals;
+        }
+        text.text = temperatureString + "C°";
 
     }
 }

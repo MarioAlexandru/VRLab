@@ -24,25 +24,23 @@ namespace UnitySimpleLiquid
         private void OnCollisionEnter(Collision collision)
         {
             
-            if (collision.gameObject.tag == "Cap")
+            if (collision.gameObject.tag == "Cap" && liquidContainer.FillAmountPercent>0)
             {
+                wait();
                 anim.SetBool("isPlay", true);
             }
         }
         private void OnCollisionExit(Collision collision)
         {
-            if (collision.gameObject.tag == "Cap")
+            if (collision.gameObject.tag == "Cap" && liquidContainer.fillAmountPercent>0)
             {
                 anim.SetBool("isPlay", false);
             }
         }
-        private void Update()
-        {
-            
-        }
+        
         IEnumerator wait()
         {
-            yield return new WaitForSeconds(5f * Time.deltaTime);
+            yield return new WaitForSeconds(7f * Time.deltaTime);
         }
     }
 }

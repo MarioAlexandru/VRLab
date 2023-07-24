@@ -13,7 +13,7 @@ public class WeighingScale : MonoBehaviour
         Rigidbody rb = other.attachedRigidbody;
         if (rb != null)
         {
-            totalWeight += rb.mass/2;
+            totalWeight += rb.mass*4;
             UpdateWeightText();
             Debug.Log("enter");
         }
@@ -24,7 +24,7 @@ public class WeighingScale : MonoBehaviour
         Rigidbody rb = other.attachedRigidbody;
         if (rb != null)
         {
-            totalWeight -= rb.mass/2;
+            totalWeight -= rb.mass*4;
             UpdateWeightText();
             Debug.Log("exit");
         }
@@ -32,6 +32,6 @@ public class WeighingScale : MonoBehaviour
 
     void UpdateWeightText()
     {
-        weightText.text =  totalWeight.ToString()  ;
+        weightText.text =  totalWeight.ToString() +" g" ;
     }
 }

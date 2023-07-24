@@ -31,7 +31,7 @@ namespace UnitySimpleLiquid
         //public Animator liquidAnimator;
         //bool hasWater;
         //bool isDizzolved;
-        float dizzolvePercent = 0;
+        public float dizzolvePercent = 0;
         bool isInCollision;
 
         public Color startColor;
@@ -82,7 +82,7 @@ namespace UnitySimpleLiquid
 
             if (dizzolvePercent < 1)
             {
-                dizzolvePercent = dizzolvePercent + 1.7f * Time.deltaTime;
+                dizzolvePercent = dizzolvePercent + 1f * Time.deltaTime;
                 dizzolveCopy.SetFloat("_dizzolvePercent", dizzolvePercent);
             }
 
@@ -91,7 +91,7 @@ namespace UnitySimpleLiquid
         {
             // de schimbat aici temperatura
 
-            if (liquidContainer.fillAmountPercent > 0 && isInCollision && dizzolvePercent<1 && temp.temperature>=16f)
+            if (liquidContainer.fillAmountPercent > 0 && isInCollision && dizzolvePercent<1 && temp.temperature>20f)
             {
 
                 if ((obiectShake.transform.rotation.eulerAngles.z < 70 && obiectShake.transform.rotation.eulerAngles.z > 30) ||

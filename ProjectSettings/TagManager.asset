@@ -11,6 +11,8 @@ TagManager:
   - Copper
   - Marble
   - Cap
+  - Right Hand
+  - Left Hand
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,24 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/1Main.unity
+    guid: f767b1c280dc1ac438c1a5d5c74fa34d
+  - enabled: 1
+    path: Assets/Scenes/ToolTips.unity
+    guid: 36b0d2388de2c6d4bbac124fcc2a879b
+  - enabled: 1
+    path: Assets/Scenes/1.unity
+    guid: fc3257a2272f97744991c56fe992913e
+  - enabled: 1
+    path: Assets/Scenes/2 test.unity
+    guid: 84db567b1978caf48ad81a77eb9a51ab
+  - enabled: 1
+    path: Assets/Scenes/3.unity
+    guid: 1f0eb06f5505a3e439121559d538fbc5
+  - enabled: 1
+    path: Assets/Scenes/Quizz.unity
+    guid: 098dffa5c4addbe45bd97262b5dbbfe7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 67f47ec1e78909b47a0850e2cdec7ae7,
       type: 2}
