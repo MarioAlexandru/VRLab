@@ -26,3 +26,6 @@ Volumul audio-ului poate fi controlat din meniul din mână stangă, unde sunt �
 
 ## Explicatii detaliate despre controale ✔
 ![controls](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Screenshots/controls.png)
+
+## Tooltip-uri pentru a educa utilizatorul
+![tooltip](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Screenshots/molecules%20with%20tooltip.png)
