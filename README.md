@@ -29,3 +29,12 @@ Volumul audio-ului poate fi controlat din meniul din mână stangă, unde sunt �
 
 ## Tooltip-uri pentru a educa utilizatorul ✔
 ![tooltip](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Screenshots/molecules%20with%20tooltip.png)
+
+## Experimente Interesante Si Educative ✔
+### Experimentele prezinta sisteme de incalzire, dizolvare si chiar si de cantarire a cantitatilor de compusi care sunt adaugati
+![experiment1](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Gifs/Beaker%20Preview.gif)
+![experiment2](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Gifs/Salt%20Crystals%20Forming%20Preview.gif)
+
+## Sistem de luat notite ✔
+### Notitele sunt persistente de la scena la scena si chiar daca device-ul este inchis si deschis
+![keyboard](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Gifs/Keyboard%20Preview.gif)
