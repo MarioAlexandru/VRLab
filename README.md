@@ -1,8 +1,6 @@
 # VR Lab
 
 <img alt="Game Logo" src="https://github.com/MarioAlexandru/VRLab/blob/main/Assets/logo.png" width="300" height="300">
-
-# VRLab
 este versiunea VR a proiectului nostru, cu cele mai multe experimente, dar care conține și joculețele din versiunile de mobil și de pc.
 Proiectul este făcut în Unity și poate fi încărcat direct pe cască și deoarece nu am folosit integrarea de la Oculus, am folosit plugin-urile XR Interaction-Toolkit și OpenXR pentru a avea o varietate mai mare pentru ce tip de cască VR este folosită.
 
