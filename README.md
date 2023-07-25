@@ -19,10 +19,10 @@ Al doilea experiment subliniază tipurile de separare ale amestecurilor, și al 
 Volumul audio-ului poate fi controlat din meniul din mână stangă, unde sunt și butoanele din care putem să trecem din scenă în scenă. Acesta este activat doar când jucătorul se uita în palmă. Este câte un glisor separate pentru muzica de fundal (am înregistrat cum am cântat la chitara) și sunetul care sunt explicații pe care le ofer pe parcursul experimentelor.
 Înafară de acestea am adăugat și un sistem de notare a jucătorului, salvăm ce notițe sunt făcute într-un fișier json și este câte un fișier diferit pentru fiecare experiment. 
 
-Caracteristici ale jocului:
+# Caracteristici ale jocului:
 
-## Meniu pe mana pentru acces usor intre scene✔
+## Meniu pe mana pentru acces usor intre scene ✔
 ![handmenu](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Screenshots/meniul%20de%20pe%20mana.png)
 
-##Explicatii detaliate despre controale
+## Explicatii detaliate despre controale ✔
 ![controls](https://github.com/MarioAlexandru/VRLab/blob/main/Assets/Screenshots/controls.png)
